@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Online Compiler</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Interactive Online Compiler</title>
 </head>
 <body>
   <h2>Ultimate Online Compiler</h2>
-  <textarea id="input" rows="3" cols="40" placeholder="Program input here"></textarea>
 
+  <!-- Code editor -->
+  <textarea id="code" rows="10" cols="60" placeholder="Write your code here"></textarea><br>
+
+  <!-- Language selector -->
   <select id="language">
     <option value="c">C</option>
     <option value="cpp">C++</option>
     <option value="python">Python</option>
     <option value="java">Java</option>
-  </select>
-  <textarea id="code" rows="15" cols="80">// Write your code here</textarea>
+  </select><br><br>
+
+  <!-- Run button -->
   <button onclick="runCode()">Run</button>
+
+  <!-- Input box for interactive stdin -->
+  <textarea id="input" rows="2" cols="40" placeholder="Type input here"></textarea>
+  <button onclick="sendInput()">Send Input</button><br><br>
+
+  <!-- Output area -->
   <pre id="output"></pre>
+
   <script src="script.js"></script>
 </body>
 </html>
-
