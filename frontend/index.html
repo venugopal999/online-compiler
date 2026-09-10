@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Interactive Online Compiler</title>
+  <title>CodeBhavya Interactive Compiler</title>
   <link rel="stylesheet" href="style.css">
-  <!-- CodeMirror CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <!-- Monaco Editor loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
 </head>
 <body>
   <header>
@@ -14,15 +14,17 @@
 
   <main>
     <section id="editor-section">
-      <select id="language">
-        <option value="c">C</option>
-        <option value="cpp">C++</option>
-        <option value="python">Python</option>
-        <option value="java">Java</option>
-      </select>
-      <button onclick="runCode()">Run</button>
-      <button onclick="stopCode()">Stop</button>
-      <textarea id="editor">// Write your code here</textarea>
+      <div id="editor"></div>
+      <div class="controls">
+        <select id="language">
+          <option value="c">C</option>
+          <option value="cpp">C++</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+        </select>
+        <button onclick="runCode()">Run</button>
+        <button onclick="stopCode()">Stop</button>
+      </div>
     </section>
 
     <section id="terminal-section">
@@ -31,10 +33,6 @@
     </section>
   </main>
 
-  <!-- CodeMirror JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
