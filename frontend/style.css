@@ -18,7 +18,8 @@ main {
 }
 
 #editor {
-  height: 300px;
+  height: 400px;   /* fixed height so Monaco is editable */
+  width: 100%;
   border: 1px solid #333;
 }
 
