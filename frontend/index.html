@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Write, run and learn C, C++, Python, Java and JavaScript with the CodeBhavya interactive compiler.">
+  <title>Online Compiler | CodeBhavya</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="https://codebhavya.com/" aria-label="CodeBhavya home">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="brand-name"><span>Code</span><strong>Bhavya</strong></span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="https://codebhavya.com/">Home</a>
+        <a href="https://codebhavya.com/Maths/">Mathematics</a>
+        <a href="https://codebhavya.com/C-Programming/">C Programming</a>
+        <a href="https://codebhavya.com/Data-Structures/">Data Structures</a>
+        <a href="https://codebhavya.com/Advanced-Data-Structures/">Advanced DS</a>
+        <a href="https://codebhavya.com/Python/">Python</a>
+        <a href="https://codebhavya.com/AI-ML/">AI &amp; ML</a>
+        <a href="https://codebhavya.com/Placement/">Placement</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">CODEBHAVYA <span>•</span> WRITE <span>·</span> RUN <span>·</span> LEARN</p>
+      <div class="intro-row">
+        <div>
+          <h1 id="pageTitle">Online Compiler</h1>
+          <p>Write a program, run it and interact with the real compiler output.</p>
+        </div>
+        <div class="server-pill"><span class="server-dot" id="serverDot"></span><span id="serverText">Ready to connect</span></div>
+      </div>
+    </section>
+
+    <section class="compiler-card" aria-label="Interactive compiler">
+      <div class="toolbar">
+        <div class="field-group">
+          <label for="language">Language</label>
+          <select id="language">
+            <option value="c">C · GCC</option>
+            <option value="cpp">C++ · GCC</option>
+            <option value="python">Python 3</option>
+            <option value="java">Java 17</option>
+            <option value="javascript">JavaScript · Node</option>
+          </select>
+        </div>
+        <div class="file-meta">
+          <span class="file-dot" aria-hidden="true"></span>
+          <span id="filename">program.c</span>
+          <span class="save-state" id="saveState">Saved on this device</span>
+        </div>
+        <div class="toolbar-actions">
+          <button class="button ghost" id="resetButton" type="button">Reset</button>
+          <button class="button ghost" id="downloadButton" type="button">Download</button>
+          <button class="button danger" id="stopButton" type="button" disabled>Stop</button>
+          <button class="button primary" id="runButton" type="button"><span class="play">▶</span> Run code <kbd>Ctrl ↵</kbd></button>
+        </div>
+      </div>
+
+      <div class="mobile-tabs" role="tablist" aria-label="Compiler panels">
+        <button class="tab active" id="codeTab" role="tab" aria-selected="true" data-panel="code">Code</button>
+        <button class="tab" id="terminalTab" role="tab" aria-selected="false" data-panel="terminal">Terminal <span class="notice-dot" id="outputNotice"></span></button>
+      </div>
+
+      <div class="workspace" id="workspace">
+        <section class="panel editor-panel active" id="codePanel" data-panel-name="code">
+          <div class="panel-heading">
+            <div><span class="panel-icon">&lt;/&gt;</span><strong>Source code</strong></div>
+            <span class="editor-hint">Draft saves automatically</span>
+          </div>
+          <div id="editor" aria-label="Source code editor"></div>
+        </section>
+
+        <div class="splitter" id="splitter" role="separator" aria-label="Resize editor and terminal" aria-orientation="horizontal"><span></span></div>
+
+        <section class="panel terminal-panel" id="terminalPanel" data-panel-name="terminal">
+          <div class="panel-heading terminal-heading">
+            <div><span class="terminal-prompt">›_</span><strong>Interactive terminal</strong><span class="status-badge ready" id="statusBadge">Ready</span></div>
+            <div class="terminal-actions">
+              <button class="text-button" id="historyButton" type="button">Input history</button>
+              <button class="text-button" id="copyButton" type="button">Copy output</button>
+              <button class="text-button" id="clearButton" type="button">Clear</button>
+            </div>
+          </div>
+          <div class="terminal-body">
+            <div id="terminal" role="log" aria-live="polite" aria-label="Compiler output"><span class="terminal-muted">Run your program to see compiler output here.</span></div>
+            <label class="console-row" for="consoleInput">
+              <span class="console-chevron">›</span>
+              <input id="consoleInput" autocomplete="off" spellcheck="false" placeholder="Program input appears here when running" disabled>
+              <span class="enter-hint">Enter ↵</span>
+            </label>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <p class="privacy-note">Your draft is stored only in this browser. Do not run untrusted code or include passwords and private information.</p>
+  </main>
+
+  <aside class="history-drawer" id="historyDrawer" aria-hidden="true" aria-labelledby="historyTitle">
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <div class="drawer-card">
+      <div class="drawer-heading">
+        <div><p class="drawer-label">CURRENT RUN</p><h2 id="historyTitle">Input history</h2></div>
+        <button id="closeHistory" type="button" aria-label="Close history">×</button>
+      </div>
+      <ol id="historyList"><li class="empty-history">No input submitted yet.</li></ol>
+      <button class="button ghost full-button" id="clearHistory" type="button">Clear history</button>
+    </div>
+  </aside>
+
+  <footer>© <span id="year"></span> CodeBhavya · From Learning to Limitless Possibilities.</footer>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
