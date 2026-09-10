@@ -1,0 +1,11 @@
+node_modules/
+npm-debug.log*
+.env
+program
+program_*
+program.c
+program.cpp
+program.py
+program.js
+Program.java
+Program.class
