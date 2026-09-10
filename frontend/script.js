@@ -1,13 +1,15 @@
 let ws;
 let editor;
 
-window.onload = () => {
-  editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-    lineNumbers: true,
-    mode: "text/x-csrc",
-    theme: "default"
+require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+require(['vs/editor/editor.main'], function () {
+  editor = monaco.editor.create(document.getElementById('editor'), {
+    value: '// Write your code here\n',
+    language: 'c',
+    theme: 'vs-dark',
+    automaticLayout: true
   });
-};
+});
 
 function runCode() {
   const code = editor.getValue();
