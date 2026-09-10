@@ -11,7 +11,9 @@ const WebSocket = require("ws");
 const PORT = process.env.PORT || 3000;
 const MAX_SOURCE_BYTES = 100 * 1024;
 const MAX_OUTPUT_BYTES = 1024 * 1024;
-const RUN_TIMEOUT_MS = 60_000;
+//const RUN_TIMEOUT_MS = 60_000;
+const RUN_TIMEOUT_MS =
+  Number(process.env.RUN_TIMEOUT_MS) || 5 * 60 * 1000;
 
 const app = express();
 app.use(cors());
