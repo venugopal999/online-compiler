@@ -1,5 +1,6 @@
 let ws;
 let editor;
+let inputHistory = [];
 
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
 require(['vs/editor/editor.main'], function () {
@@ -20,6 +21,7 @@ function runCode() {
   ws.onopen = () => {
     ws.send(JSON.stringify({ type: "run", language, code }));
     document.getElementById("terminal").textContent = "";
+    inputHistory = []; // reset history for new run
   };
 
   ws.onmessage = (event) => {
@@ -42,7 +44,14 @@ document.getElementById("consoleInput").addEventListener("keydown", (e) => {
     const input = e.target.value;
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify({ type: "input", value: input }));
+      inputHistory.push(input); // store input
       e.target.value = "";
     }
   }
 });
+
+function showHistory() {
+  const terminal = document.getElementById("terminal");
+  terminal.textContent += "\n[Input History: " + inputHistory.join(", ") + "]\n";
+  terminal.scrollTop = terminal.scrollHeight;
+}
