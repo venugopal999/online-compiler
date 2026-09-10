@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Interactive Online Compiler</title>
-  <style>
-    body { font-family: monospace; background: #111; color: #eee; }
-    #editor { width: 100%; height: 200px; }
-    #terminal { background: #000; color: #0f0; padding: 10px; height: 200px; overflow-y: auto; }
-    #terminal input { background: #000; color: #0f0; border: none; width: 100%; }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 </head>
 <body>
-  <h2>Ultimate Online Compiler</h2>
+  <header>
+    <h1>CodeBhavya Interactive Compiler</h1>
+  </header>
 
-  <textarea id="editor" placeholder="Write your code here"></textarea><br>
+  <main>
+    <section id="editor-section">
+      <select id="language">
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+      </select>
+      <button onclick="runCode()">Run</button>
+      <button onclick="stopCode()">Stop</button>
+      <textarea id="editor">// Write your code here</textarea>
+    </section>
 
-  <select id="language">
-    <option value="c">C</option>
-    <option value="cpp">C++</option>
-    <option value="python">Python</option>
-    <option value="java">Java</option>
-  </select>
-  <button onclick="runCode()">Run</button>
+    <section id="terminal-section">
+      <div id="terminal"></div>
+      <input id="consoleInput" placeholder="Type input here and press Enter">
+    </section>
+  </main>
 
-  <div id="terminal"></div>
-  <input id="consoleInput" placeholder="Type input here and press Enter">
-
+  <!-- CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
