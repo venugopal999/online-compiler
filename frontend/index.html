@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Write, run and interact with programs in the CodeBhavya online compiler.">
+  <title>Online Compiler | CodeBhavya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Code+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="https://codebhavya.com/index.html" aria-label="CodeBhavya home">
+      <img class="main-logo" src="https://codebhavya.com/images/codebhavya-main-logo.png" alt="CodeBhavya logo">
+      <span class="wordmark"><span>Code</span><strong>Bhavya</strong></span>
+    </a>
+    <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+      <a class="nav-link active" href="https://codebhavya.com/index.html">Home</a>
+      <div class="nav-dropdown">
+        <button class="nav-link dropdown-toggle" type="button" aria-expanded="false">Learn <span aria-hidden="true">⌄</span></button>
+        <div class="dropdown-menu">
+          <section><h2>Programming</h2><a href="https://codebhavya.com/C-Programming/index.html">C Programming</a><a href="https://codebhavya.com/Python/index.html">Python</a><a href="https://codebhavya.com/Programs/index.html">Programs Library</a></section>
+          <section><h2>Data &amp; Algorithms</h2><a href="https://codebhavya.com/Data-Structures/index.html">Data Structures</a><a href="https://codebhavya.com/Advanced-Data-Structures/index.html">Advanced Data Structures</a></section>
+          <section><h2>AI &amp; Mathematics</h2><a href="https://codebhavya.com/Maths/index.html">Mathematics</a><a href="https://codebhavya.com/AI-ML/index.html">AI &amp; Machine Learning</a></section>
+          <section><h2>Core Computer Science</h2><a href="https://codebhavya.com/DBMS/index.html">DBMS &amp; SQL</a><a href="https://codebhavya.com/Placement/mcq-library.html?topic=core-cs">Core CS Practice</a><a href="https://codebhavya.com/Placement/core-cs-problems.html">Scenario Problem Lab</a></section>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-link dropdown-toggle" type="button" aria-expanded="false">Practice <span aria-hidden="true">⌄</span></button>
+        <div class="dropdown-menu practice-menu">
+          <section><h2>Learn &amp; Review</h2><a href="https://codebhavya.com/Placement/practice.html">Practice Hub</a><a href="https://codebhavya.com/Placement/mcq-library.html?topic=c">MCQ Learning Library</a><a href="https://codebhavya.com/Placement/company-prep.html">Company Preparation</a></section>
+          <section><h2>Assess &amp; Code</h2><a href="https://codebhavya.com/Placement/quiz.html?topic=c">Timed Quiz</a><a href="https://codebhavya.com/Placement/coding.html?topic=c">Coding Arena</a><a href="https://codebhavya.com/Online-Compiler/">Online Compiler</a><a href="https://codebhavya.com/Placement/mock-drive.html">Complete Mock Drive</a></section>
+          <section><h2>Interview &amp; Evidence</h2><a href="https://codebhavya.com/Placement/interview.html">Interview Coach</a><a href="https://codebhavya.com/Placement/evidence-lab.html">Resume &amp; Project Evidence</a><a href="https://codebhavya.com/Placement/progress.html">My Progress</a></section>
+        </div>
+      </div>
+      <a class="nav-link" href="https://codebhavya.com/Placement/index.html">Placement</a>
+      <a class="progress-link" href="https://codebhavya.com/Placement/progress.html">My Progress</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">CODEBHAVYA · WRITE · RUN · LEARN</p><h1>Online Compiler</h1><p class="hero-copy">Write a program, provide input and inspect the real compiler output.</p></div>
+      <div class="server-state" aria-live="polite"><span class="server-dot live" id="serverDot"></span><span id="serverText">Ready to run</span></div>
+    </section>
+
+    <section class="compiler-shell" aria-label="Online compiler">
+      <div class="toolbar">
+        <label class="language-control"><span>Language</span><select id="language"><option value="c">C · GCC 14</option><option value="cpp">C++ · G++ 14</option><option value="python">Python 3</option><option value="java">Java 17</option><option value="javascript">JavaScript · Node</option></select></label>
+        <div class="file-state"><span class="file-dot"></span><strong id="filename">program.c</strong><small id="saveState">Saved on this device</small></div>
+        <div class="toolbar-actions">
+          <button class="button secondary" id="resetButton" type="button">↻ <span>Reset</span></button>
+          <button class="button secondary" id="downloadButton" type="button">↓ <span>Download</span></button>
+          <button class="button stop" id="stopButton" type="button" disabled>■ <span>Stop</span></button>
+          <button class="button run" id="runButton" type="button">▶ <span>Run code</span><kbd>Ctrl ↵</kbd></button>
+        </div>
+      </div>
+
+      <div class="mobile-tabs" role="tablist" aria-label="Compiler panels">
+        <button class="tab active" data-panel="code" role="tab" aria-selected="true">Code</button>
+        <button class="tab" id="terminalTab" data-panel="terminal" role="tab" aria-selected="false">Output <span id="outputNotice"></span></button>
+        <button class="tab" data-panel="input" role="tab" aria-selected="false">Input</button>
+      </div>
+
+      <div class="workspace" id="workspace">
+        <section class="panel source-panel active" data-panel-name="code">
+          <header class="panel-header"><div><span class="panel-kicker">Source code</span><h2 id="sourceTitle">C program</h2></div><div class="panel-tools"><span class="shortcut">Ctrl + Enter to run</span><button class="small-button" id="copyCodeButton" type="button">Copy code</button></div></header>
+          <div id="editor" aria-label="Source code editor"></div>
+        </section>
+        <div class="splitter splitter-vertical" id="verticalSplitter" role="separator" tabindex="0" aria-label="Resize code and result panels" aria-orientation="vertical" title="Drag to resize · Double-click to reset"><span></span></div>
+        <div class="side-stack" id="sideStack">
+          <section class="panel output-panel" data-panel-name="terminal">
+            <header class="panel-header"><div><span class="panel-kicker">Program result</span><div class="output-title"><h2>Output</h2><span class="status-badge ready" id="statusBadge">Ready</span></div></div><div class="panel-tools"><button class="small-button" id="clearButton" type="button">Clear</button><button class="small-button" id="copyButton" type="button">Copy output</button></div></header>
+            <pre id="terminal" aria-live="polite"><span class="terminal-muted">Ready for output. Run the program to see the result here.</span></pre>
+          </section>
+          <div class="splitter splitter-horizontal" id="horizontalSplitter" role="separator" tabindex="0" aria-label="Resize output and input panels" aria-orientation="horizontal" title="Drag to resize · Double-click to reset"><span></span></div>
+          <section class="panel input-panel" data-panel-name="input">
+            <header class="panel-header"><div><span class="panel-kicker">Interactive · sent while running</span><h2>Program input (stdin)</h2></div><button class="small-button" id="historyButton" type="button">History</button></header>
+            <div class="input-content"><p class="input-help"><strong>Use this only when your program asks for input.</strong> Run the program first, type one response, then press Enter.</p><ol class="input-preview" id="inputPreview"><li>No input submitted yet.</li></ol></div>
+            <div class="console-entry"><span aria-hidden="true">›</span><input id="consoleInput" type="text" placeholder="Run a program to enable input" autocomplete="off" spellcheck="false" disabled><small>Enter ↵</small></div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <p class="privacy-note">Your draft is stored only in this browser. Do not run untrusted code or include passwords and private information.</p>
+  </main>
+
+  <aside class="drawer" id="historyDrawer" aria-hidden="true"><button class="drawer-backdrop" id="drawerBackdrop" aria-label="Close history"></button><div class="drawer-panel"><header><div><span class="panel-kicker">This run</span><h2>Input history</h2></div><button class="close-button" id="closeHistory" aria-label="Close history">×</button></header><ol id="historyList"><li class="empty-history">No input submitted yet.</li></ol><button class="button secondary full-button" id="clearHistory" type="button">Clear history</button></div></aside>
+  <footer>© <span id="year"></span> CodeBhavya · Write · Run · Learn</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
